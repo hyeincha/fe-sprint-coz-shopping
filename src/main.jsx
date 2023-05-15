@@ -4,13 +4,14 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import MainPage from './pages/MainPage.jsx';
 import ProductListPage from './pages/ProductListPage.jsx';
 import BookmarkPage from './pages/BookmarkPage.jsx';
-import App from './App.jsx';
+import App, { loader as productLoader } from './App.jsx';
 import './index.css';
 
 const router = createBrowserRouter([
   {
     path: '/',
     element: <App />,
+    loader: productLoader,
     children: [
       {
         index: true,
