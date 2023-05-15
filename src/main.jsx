@@ -6,6 +6,10 @@ import MainPage from './pages/MainPage.jsx';
 import ProductListPage from './pages/ProductListPage.jsx';
 import BookmarkPage from './pages/BookmarkPage.jsx';
 
+if (!localStorage.getItem('bookmarks')) {
+  localStorage.setItem('bookmarks', []);
+}
+
 const router = createBrowserRouter([
   {
     path: '/',

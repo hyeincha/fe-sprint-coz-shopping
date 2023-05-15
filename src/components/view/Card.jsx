@@ -1,3 +1,5 @@
+import Bookmark from '../ui/Bookmark.jsx';
+
 function Card({ product }) {
   const {
     id,
@@ -11,7 +13,6 @@ function Card({ product }) {
     brand_image_url,
     follower,
   } = product;
-
   let content;
 
   switch (type) {
@@ -54,12 +55,13 @@ function Card({ product }) {
   }
 
   return (
-    <section className='w-[264px]'>
+    <section className='w-[264px] relative'>
       <img
         src={type === 'Brand' ? brand_image_url : image_url}
         alt={type === 'Brand' ? `${brand_name} image` : `${title} image`}
         className='rounded-xl'
       />
+      <Bookmark id={id} />
       {content}
     </section>
   );
