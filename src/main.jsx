@@ -1,23 +1,30 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './index.css';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import MainPage from './pages/MainPage.jsx';
 import ProductListPage from './pages/ProductListPage.jsx';
 import BookmarkPage from './pages/BookmarkPage.jsx';
+import App from './App.jsx';
+import './index.css';
 
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <MainPage />,
-  },
-  {
-    path: '/products/list',
-    element: <ProductListPage />,
-  },
-  {
-    path: '/bookmark',
-    element: <BookmarkPage />,
+    element: <App />,
+    children: [
+      {
+        index: true,
+        element: <MainPage />,
+      },
+      {
+        path: '/products/list',
+        element: <ProductListPage />,
+      },
+      {
+        path: '/bookmark',
+        element: <BookmarkPage />,
+      },
+    ],
   },
 ]);
 
