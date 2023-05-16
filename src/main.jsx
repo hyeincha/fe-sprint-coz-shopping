@@ -7,6 +7,10 @@ import BookmarkPage from './pages/BookmarkPage.jsx';
 import App, { loader as productLoader } from './App.jsx';
 import './index.css';
 
+if (!localStorage.getItem('bookmarks')) {
+  localStorage.setItem('bookmarks', []);
+}
+
 const router = createBrowserRouter([
   {
     path: '/',
