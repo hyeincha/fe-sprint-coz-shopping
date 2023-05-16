@@ -9,10 +9,6 @@ import './index.css';
 import store from './redux/store.js';
 import { Provider } from 'react-redux';
 
-if (!localStorage.getItem('bookmarks')) {
-  localStorage.setItem('bookmarks', []);
-}
-
 const router = createBrowserRouter([
   {
     path: '/',

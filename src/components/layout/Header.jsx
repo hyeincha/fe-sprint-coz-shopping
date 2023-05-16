@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { RxHamburgerMenu } from 'react-icons/rx';
-import Dropdown from '../ui/Dropdown.jsx';
+import Dropdown from '../view/Dropdown.jsx';
 
 function Header() {
   const [isOpen, setIsOpen] = useState(false);
@@ -19,7 +19,7 @@ function Header() {
   }, []);
 
   return (
-    <header className='flex justify-between px-14 py-4 shadow-lg items-center'>
+    <header className='flex justify-between px-24 py-4 shadow-lg items-center'>
       <Link to='/'>
         <section className='flex gap-2 items-center cursor-pointer'>
           <img src='../public/codestates.png' alt='코드스테이츠 로고' width='42' />
