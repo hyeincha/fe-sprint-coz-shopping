@@ -1,5 +1,7 @@
+import MainProducts from '../components/view/MainProducts';
+
 function MainPage() {
-  return <div>MainPage</div>;
+  return <MainProducts />;
 }
 
 export default MainPage;

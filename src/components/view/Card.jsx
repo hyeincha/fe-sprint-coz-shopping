@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import Bookmark from '../ui/Bookmark.jsx';
 
 function Card({ product }) {
@@ -15,6 +16,13 @@ function Card({ product }) {
   } = product;
   let content;
 
+  const [isBookmarked, setIsBookmarked] = useState(!!localStorage.getItem(id));
+
+  const handleBookmark = () => {
+    isBookmarked ? localStorage.removeItem(id) : localStorage.setItem(id, 'bookmark!');
+    setIsBookmarked(!isBookmarked);
+  };
+
   switch (type) {
     case 'Product':
       content = (
@@ -22,7 +30,7 @@ function Card({ product }) {
           <h3 className='font-bold'>{title}</h3>
           <div className='flex flex-col text-right gap-2'>
             <span className='font-bold text-[#452CDD]'>{discountPercentage}%</span>
-            <span>{price}</span>
+            <span>{Number(price).toLocaleString()}원</span>
           </div>
         </div>
       );
@@ -48,20 +56,20 @@ function Card({ product }) {
           <h3 className='font-bold'>{brand_name}</h3>
           <div className='flex flex-col text-right gap-2'>
             <span className='font-bold'>관심고객수</span>
-            <span>{follower.toLocalString()}</span>
+            <span>{follower.toLocaleString()}</span>
           </div>
         </div>
       );
   }
 
   return (
-    <section className='w-[264px] relative'>
+    <section className='relative py-7 cursor-pointer'>
       <img
         src={type === 'Brand' ? brand_image_url : image_url}
         alt={type === 'Brand' ? `${brand_name} image` : `${title} image`}
-        className='rounded-xl'
+        className='rounded-xl w-[264px] h-48'
       />
-      <Bookmark id={id} />
+      <Bookmark isBookmarked={isBookmarked} bookmarkHandler={handleBookmark} />
       {content}
     </section>
   );

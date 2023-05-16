@@ -10,7 +10,7 @@ function Dropdown({ setIsOpen }) {
   };
 
   const dropdownStyle = {
-    ul: 'bg-white shadow-[0_2px_10px_1px_rgba(0,0,0,0.1)] rounded-lg absolute top-14 right-6',
+    ul: 'bg-white shadow-[0_2px_10px_1px_rgba(0,0,0,0.1)] rounded-lg absolute top-14 right-14 z-10',
     hi: 'px-6 py-4 text-center cursor-default',
     li: 'flex gap-2 px-6 py-4 items-center border-t border-solid border-slate-200 hover:bg-slate-100',
   };
