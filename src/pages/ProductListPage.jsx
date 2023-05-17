@@ -1,7 +1,13 @@
-import React from 'react';
+import CategoryList from '../components/view/CategoryList.jsx';
+import ProductList from '../components/view/ProductList.jsx';
 
 function ProductListPage() {
-  return <div>ProductListPage</div>;
+  return (
+    <>
+      <CategoryList />
+      <ProductList />
+    </>
+  );
 }
 
 export default ProductListPage;
