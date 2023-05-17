@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import Bookmark from '../ui/Bookmark.jsx';
+import ItemModal from './ItemModal.jsx';
 
 function Card({ product }) {
   const {
@@ -18,10 +19,13 @@ function Card({ product }) {
 
   const [isBookmarked, setIsBookmarked] = useState(!!localStorage.getItem(id));
 
-  const handleBookmark = () => {
+  const handleBookmark = (e) => {
+    e.stopPropagation();
     isBookmarked ? localStorage.removeItem(id) : localStorage.setItem(id, 'bookmark!');
     setIsBookmarked(!isBookmarked);
   };
+
+  const [showModal, setShowModal] = useState(false);
 
   switch (type) {
     case 'Product':
@@ -63,7 +67,7 @@ function Card({ product }) {
   }
 
   return (
-    <section className='relative py-7 cursor-pointer'>
+    <section className='relative py-7' onClick={() => setShowModal(true)}>
       <img
         src={type === 'Brand' ? brand_image_url : image_url}
         alt={type === 'Brand' ? `${brand_name} image` : `${title} image`}
@@ -71,6 +75,18 @@ function Card({ product }) {
       />
       <Bookmark isBookmarked={isBookmarked} bookmarkHandler={handleBookmark} />
       {content}
+      {showModal && (
+        <ItemModal
+          onClose={(e) => {
+            e.stopPropagation();
+            setShowModal(false);
+          }}
+          imageUrl={image_url ?? brand_image_url}
+          title={title ?? brand_name}
+          bookmarkHandler={handleBookmark}
+          isBookmarked={isBookmarked}
+        />
+      )}
     </section>
   );
 }
