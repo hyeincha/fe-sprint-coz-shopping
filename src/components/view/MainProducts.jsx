@@ -5,7 +5,7 @@ function MainProducts() {
   const products = useSelector((state) => state.products);
   const mainProductsstyle = {
     title: 'font-bold text-[23px] pt-5',
-    section: 'flex justify-between',
+    section: 'flex calc',
   };
 
   return (

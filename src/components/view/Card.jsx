@@ -67,7 +67,7 @@ function Card({ product }) {
   }
 
   return (
-    <section className='relative py-7' onClick={() => setShowModal(true)}>
+    <section className='relative w-[264px] py-7' onClick={() => setShowModal(true)}>
       <img
         src={type === 'Brand' ? brand_image_url : image_url}
         alt={type === 'Brand' ? `${brand_name} image` : `${title} image`}

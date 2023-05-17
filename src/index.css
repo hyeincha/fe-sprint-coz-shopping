@@ -140,3 +140,6 @@ a {
   color: inherit;
   text-decoration: none;
 }
+.calc {
+  gap: calc((100% - (264px * 4)) / 3);
+}

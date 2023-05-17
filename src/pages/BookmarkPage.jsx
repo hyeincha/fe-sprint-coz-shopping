@@ -1,7 +1,13 @@
-import React from 'react';
+import CategoryList from '../components/view/CategoryList.jsx';
+import BookmarkList from '../components/view/BookmarkList.jsx';
 
 function BookmarkPage() {
-  return <div>BookmarkPage</div>;
+  return (
+    <>
+      <CategoryList />
+      <BookmarkList />
+    </>
+  );
 }
 
 export default BookmarkPage;
