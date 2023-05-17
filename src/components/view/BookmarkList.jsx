@@ -21,7 +21,7 @@ function BookmarkList() {
   }, [sort]);
 
   return (
-    <div className='grid grid-cols-[repeat(auto-fill,minmax(264px,1fr))] gap-10 place-items-center justify-between px-24'>
+    <div className='grid grid-cols-[repeat(auto-fill,minmax(264px,1fr))] gap-10 justify-items-center justify-between px-24'>
       {filteredProducts.map((product) => (
         <Card key={product.id} product={product} />
       ))}

@@ -19,7 +19,7 @@ function ProductList() {
   }, [sort]);
 
   return (
-    <div className='grid grid-cols-[repeat(auto-fill,minmax(264px,1fr))] place-items-center gap-10 px-24'>
+    <div className='grid grid-cols-[repeat(auto-fill,minmax(264px,1fr))] justify-items-center gap-10 px-24'>
       {filteredProducts.map((product) => (
         <Card key={product.id} product={product} />
       ))}

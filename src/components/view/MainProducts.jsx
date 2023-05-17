@@ -5,7 +5,8 @@ function MainProducts() {
   const products = useSelector((state) => state.products);
   const mainProductsstyle = {
     title: 'font-bold text-[23px] pt-5',
-    section: 'flex justify-between',
+    section:
+      'grid grid-cols-[repeat(auto-fill,minmax(264px,1fr))] gap-14 justify-items-center justify-between',
   };
 
   return (
