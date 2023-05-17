@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import Bookmark from '../ui/Bookmark.jsx';
 import ItemModal from './ItemModal.jsx';
+import { PRODUCT_TYPE } from '../../helpers/constants.js';
 
 function Card({ product }) {
   const {
@@ -28,7 +29,7 @@ function Card({ product }) {
   const [showModal, setShowModal] = useState(false);
 
   switch (type) {
-    case 'Product':
+    case PRODUCT_TYPE.PRODUCT:
       content = (
         <div className='flex justify-between mt-2'>
           <h3 className='font-bold'>{title}</h3>
@@ -39,14 +40,14 @@ function Card({ product }) {
         </div>
       );
       break;
-    case 'Category':
+    case PRODUCT_TYPE.CATEGORY:
       content = (
         <div className='mt-2'>
           <h3 className='font-bold'># {title}</h3>
         </div>
       );
       break;
-    case 'Exhibition':
+    case PRODUCT_TYPE.EXHIBITION:
       content = (
         <div className='mt-2'>
           <h3 className='font-bold mb-2'>{title}</h3>
@@ -54,7 +55,7 @@ function Card({ product }) {
         </div>
       );
       break;
-    default:
+    case PRODUCT_TYPE.BRAND:
       content = (
         <div className='flex justify-between mt-2'>
           <h3 className='font-bold'>{brand_name}</h3>
@@ -64,13 +65,16 @@ function Card({ product }) {
           </div>
         </div>
       );
+      break;
+    default:
+      content = <div>존재하지 않는 카테고리입니다.</div>;
   }
 
   return (
     <section className='relative w-[264px] py-7' onClick={() => setShowModal(true)}>
       <img
-        src={type === 'Brand' ? brand_image_url : image_url}
-        alt={type === 'Brand' ? `${brand_name} image` : `${title} image`}
+        src={type === PRODUCT_TYPE.BRAND ? brand_image_url : image_url}
+        alt={type === PRODUCT_TYPE.BRAND ? `${brand_name} image` : `${title} image`}
         className='rounded-xl w-[264px] h-48'
       />
       <Bookmark isBookmarked={isBookmarked} bookmarkHandler={handleBookmark} />
