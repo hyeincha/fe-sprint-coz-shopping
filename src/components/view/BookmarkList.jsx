@@ -3,10 +3,12 @@ import { useSearchParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import Card from './Card';
 
-function ProductList() {
+function BookmarkList() {
   const [searchParams] = useSearchParams();
   const sort = searchParams.get('sort');
-  const products = useSelector((state) => state.products);
+  const products = useSelector((state) =>
+    state.products.filter((product) => !!localStorage.getItem(product.id))
+  );
   const [filteredProducts, setFilteredProducts] = useState(products);
 
   useEffect(() => {
@@ -19,7 +21,7 @@ function ProductList() {
   }, [sort]);
 
   return (
-    <div className='grid grid-cols-[repeat(auto-fill,minmax(264px,1fr))] place-items-center gap-10 px-24'>
+    <div className='grid grid-cols-[repeat(auto-fill,minmax(264px,1fr))] gap-10 place-items-center justify-between px-24'>
       {filteredProducts.map((product) => (
         <Card key={product.id} product={product} />
       ))}
@@ -27,4 +29,4 @@ function ProductList() {
   );
 }
 
-export default ProductList;
+export default BookmarkList;
