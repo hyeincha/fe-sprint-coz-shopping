@@ -8,7 +8,7 @@ function Category({ parameter, name, imgSrc }) {
     setSearchParams(searchParams);
   };
 
-  const sort = searchParams.get('sort');
+  const sort = searchParams.get('sort') || 'all';
 
   const activeStyle =
     'text-[#412DD4] underline decoration-[#412DD4] decoration-[2.5px] font-semibold';
