@@ -14,6 +14,7 @@ const router = createBrowserRouter([
     path: '/',
     element: <App />,
     loader: productLoader,
+    shouldRevalidate: () => false,
     children: [
       {
         index: true,
