@@ -13,11 +13,10 @@
 ## 🛫 프로젝트 실행 방법
   
 ```
-  git clone https://github.com/hyeincha/fe-sprint-coz-shopping.git
-```
-```
-  yarn
-  yarn dev
+git clone https://github.com/hyeincha/fe-sprint-coz-shopping.git
+cd 폴더명
+yarn
+yarn dev
 ```
   
 ## 📂 파일 구조
@@ -114,6 +113,31 @@
   
 <br>
   
+## 🔫 트러블슈팅
 
+### 토스트 구현
 
+이번 프로젝트의 토스트는 아래와 같은 특징을 가지고 있습니다:
 
+- 모든 페이지에서 렌더링이 가능해야 함
+- 동시에 여러 개의 토스트가 존재할 수 있음
+- 토스트가 떠있는 채로 페이지를 이동하더라도 유지되어야 함
+
+<br>
+
+이러한 특징들 때문에 토스트의 상태를 전역에서 관리하였습니다. <br>
+북마크 이벤트가 실행될 때마다 `id`와 `isBookmarked` 프로퍼티로 구성된 객체가 토스트 배열에 추가되며, <br>
+`id`는 `Date.now()`로 생성된 토스트의 고유한 아이디, <br>
+`isBookmarked`는 북마크가 제거된 것인지 혹은 추가된 것인지를 판별하는 boolean 값입니다. <br>
+`setTimeout` 함수를 이용하여 2초가 지나면 토스트 배열에서 id가 일치하는 요소를 제외하여 토스트가 사라지도록 구현했습니다.
+
+<br>
+
+### API 최적화
+
+이 프로젝트에서는 react-router-dom의 `loader`를 이용하여 루트 경로에서 데이터를 페칭합니다. <br>
+상품리스트 페이지, 북마크 페이지에서 카테고리에 따른 필터링을 구현할 때는 쿼리 파라미터를 사용하였는데, <br>
+이것 때문에 카테고리가 변경될 때마다 `loader` 함수가 실행되어 매번 새로 데이터를 요청하는 문제가 발생했습니다. <br>
+<br>
+이 프로젝트는 최초 API 요청으로 데이터를 받아왔다면 더이상 새로운 API 요청이 필요하지 않기 때문에 <br>
+react-router-dom의 `shouldRevalidate` 옵션에서 항상 false를 리턴하여 불필요한 데이터 요청을 방지했습니다.
