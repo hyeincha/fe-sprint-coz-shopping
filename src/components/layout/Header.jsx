@@ -22,7 +22,7 @@ function Header() {
     <header className='flex justify-between px-24 py-4 shadow-lg items-center'>
       <Link to='/'>
         <section className='flex gap-2 items-center cursor-pointer'>
-          <img src='../public/codestates.png' alt='코드스테이츠 로고' width='42' />
+          <img src='/codestates.png' alt='코드스테이츠 로고' width='42' />
           <h1 className='text-2xl font-bold'>COZ Shopping</h1>
         </section>
       </Link>
