@@ -3,6 +3,7 @@ import Bookmark from '../ui/Bookmark.jsx';
 import ItemModal from './ItemModal.jsx';
 import { PRODUCT_TYPE } from '../../helpers/constants.js';
 import { useDispatch } from 'react-redux';
+import { addBookmark, deleteBookmark } from '../../redux/modules/productsSlice.js';
 import { setToast, deleteToast } from '../../redux/modules/toastSlice.js';
 
 function Card({ product }) {
@@ -25,7 +26,13 @@ function Card({ product }) {
 
   const handleBookmark = (e) => {
     e.stopPropagation();
-    isBookmarked ? localStorage.removeItem(id) : localStorage.setItem(id, 'bookmark!');
+    if (isBookmarked) {
+      localStorage.removeItem(id);
+      dispatch(deleteBookmark(id));
+    } else {
+      localStorage.setItem(id, 'bookmark!');
+      dispatch(addBookmark(product));
+    }
     const toastId = Date.now();
     dispatch(setToast({ id: toastId, isBookmarked }));
     setIsBookmarked(!isBookmarked);
