@@ -3,7 +3,7 @@ import Footer from './components/layout/Footer.jsx';
 import { Outlet, useLoaderData } from 'react-router-dom';
 import { getProducts } from './api/apis.js';
 import { useDispatch } from 'react-redux';
-import { setData } from './redux/modules/productsSlice.js';
+import { setData, setBookmarks } from './redux/modules/productsSlice.js';
 import { useEffect } from 'react';
 import ToastContainer from './components/view/ToastContainer.jsx';
 
@@ -17,6 +17,7 @@ function App() {
 
   useEffect(() => {
     dispatch(setData(data));
+    dispatch(setBookmarks(data));
   }, []);
 
   return (

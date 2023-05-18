@@ -8,7 +8,7 @@ function ProductList() {
   const [searchParams] = useSearchParams();
   const sort = searchParams.get('sort');
   const isAll = !sort || sort === 'all';
-  const products = useSelector((state) => state.products);
+  const { products } = useSelector((state) => state.products);
   const [filteredProducts, setFilteredProducts] = useState([]);
   const scrollRef = useRef(null);
 
