@@ -5,6 +5,7 @@ import { getProducts } from './api/apis.js';
 import { useDispatch } from 'react-redux';
 import { setData } from './redux/modules/productsSlice.js';
 import { useEffect } from 'react';
+import ToastContainer from './components/view/ToastContainer.jsx';
 
 export const loader = async () => {
   return await getProducts();
@@ -24,6 +25,7 @@ function App() {
       <main>
         <Outlet />
       </main>
+      <ToastContainer />
       <Footer />
     </>
   );

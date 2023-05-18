@@ -2,6 +2,8 @@ import { useState } from 'react';
 import Bookmark from '../ui/Bookmark.jsx';
 import ItemModal from './ItemModal.jsx';
 import { PRODUCT_TYPE } from '../../helpers/constants.js';
+import { useDispatch } from 'react-redux';
+import { setToast, deleteToast } from '../../redux/modules/toastSlice.js';
 
 function Card({ product }) {
   const {
@@ -19,11 +21,15 @@ function Card({ product }) {
   let content;
 
   const [isBookmarked, setIsBookmarked] = useState(!!localStorage.getItem(id));
+  const dispatch = useDispatch();
 
   const handleBookmark = (e) => {
     e.stopPropagation();
     isBookmarked ? localStorage.removeItem(id) : localStorage.setItem(id, 'bookmark!');
+    const toastId = Date.now();
+    dispatch(setToast({ id: toastId, isBookmarked }));
     setIsBookmarked(!isBookmarked);
+    setTimeout(() => dispatch(deleteToast(toastId)), 2000);
   };
 
   const [showModal, setShowModal] = useState(false);
