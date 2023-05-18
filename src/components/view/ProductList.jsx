@@ -12,6 +12,16 @@ function ProductList() {
   const [filteredProducts, setFilteredProducts] = useState([]);
   const scrollRef = useRef(null);
 
+  useEffect(() => {
+    if (!products.length) return;
+    if (isAll) {
+      setFilteredProducts(products.slice(0, 30));
+      return;
+    }
+    const newProducts = products.filter((product) => product.type.toLowerCase() === sort);
+    setFilteredProducts(newProducts);
+  }, [sort, products]);
+
   useInfiniteScroll(scrollRef, () => {
     setFilteredProducts((prev) => {
       let currentLength = prev.length + 25;
@@ -19,15 +29,6 @@ function ProductList() {
       return [...prev, ...products.slice(prev.length, currentLength)];
     });
   });
-
-  useEffect(() => {
-    if (isAll) {
-      setFilteredProducts(products.slice(0, 30));
-      return;
-    }
-    const newProducts = products.filter((product) => product.type.toLowerCase() === sort);
-    setFilteredProducts(newProducts);
-  }, [sort]);
 
   return (
     <div className='grid grid-cols-[repeat(auto-fill,minmax(264px,1fr))] justify-items-center gap-10 px-24'>
