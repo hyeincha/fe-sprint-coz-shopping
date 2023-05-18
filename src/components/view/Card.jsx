@@ -20,9 +20,15 @@ function Card({ product }) {
     follower,
   } = product;
   let content;
-
+  const [showModal, setShowModal] = useState(false);
   const [isBookmarked, setIsBookmarked] = useState(!!localStorage.getItem(id));
   const dispatch = useDispatch();
+
+  const handleToast = () => {
+    const toastId = Date.now();
+    dispatch(setToast({ id: toastId, isBookmarked }));
+    setTimeout(() => dispatch(deleteToast(toastId)), 2000);
+  };
 
   const handleBookmark = (e) => {
     e.stopPropagation();
@@ -33,13 +39,9 @@ function Card({ product }) {
       localStorage.setItem(id, 'bookmark!');
       dispatch(addBookmark(product));
     }
-    const toastId = Date.now();
-    dispatch(setToast({ id: toastId, isBookmarked }));
+    handleToast();
     setIsBookmarked(!isBookmarked);
-    setTimeout(() => dispatch(deleteToast(toastId)), 2000);
   };
-
-  const [showModal, setShowModal] = useState(false);
 
   switch (type) {
     case PRODUCT_TYPE.PRODUCT:
