@@ -9,7 +9,7 @@ function ProductList() {
   const sort = searchParams.get('sort');
   const isAll = !sort || sort === 'all';
   const { products } = useSelector((state) => state.products);
-  const [filteredProducts, setFilteredProducts] = useState([]);
+  const [filteredProducts, setFilteredProducts] = useState(products.slice(0, 30));
   const scrollRef = useRef(null);
 
   useEffect(() => {

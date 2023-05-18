@@ -10,7 +10,7 @@ function BookmarkList() {
   const sort = searchParams.get('sort');
   const isAll = !sort || sort === 'all';
   const { bookmarks } = useSelector((state) => state.products);
-  const [filteredBookmarks, setFilteredBookmarks] = useState([]);
+  const [filteredBookmarks, setFilteredBookmarks] = useState(bookmarks.slice(0, 15));
   const scrollRef = useRef(null);
 
   useInfiniteScroll(scrollRef, () => {
