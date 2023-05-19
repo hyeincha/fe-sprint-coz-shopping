@@ -6,10 +6,9 @@ export const toastSlice = createSlice({
   reducers: {
     setToast: (state, action) => [...state, action.payload],
     deleteToast: (state, action) => state.filter((state) => state.id !== action.payload),
-    getToast: (state) => state,
   },
 });
 
-export const { setToast, getToast, deleteToast } = toastSlice.actions;
+export const { setToast, deleteToast } = toastSlice.actions;
 
 export default toastSlice.reducer;
