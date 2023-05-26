@@ -43,10 +43,5 @@
     "prop-types": "^15.8.1",
     "storybook": "^7.0.17",
     "vite": "^4.3.2"
-  },
-  "eslintConfig": {
-    "extends": [
-      "plugin:storybook/recommended"
-    ]
   }
 }
