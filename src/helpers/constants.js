@@ -32,3 +32,8 @@ export const CATEGORY_LIST = [
     imgSrc: '/brand.png',
   },
 ];
+
+export const TOAST_MESSAGE = {
+  REMOVE: '상품이 북마크에서 제거되었습니다.',
+  ADD: '상품이 북마크에 추가되었습니다.',
+};
